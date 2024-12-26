@@ -1,0 +1,129 @@
+// // In App.js in a new project
+
+import * as React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createStaticNavigation,
+  useNavigation,
+} from '@react-navigation/native';
+import { Button } from '@react-navigation/elements';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+
+function HomeScreen() {
+  const navigation = useNavigation();
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button onPress={() => navigation.navigate('Details')}
+        color='green'
+        style={{ marginTop: 10 }}
+
+      >
+        Go to Details
+      </Button>
+    </View>
+  );
+}
+function Details() {
+
+  const navigation = useNavigation();
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen Details</Text>
+      <Button onPress={() => navigation.navigate('Details2', {
+        itemId: 86,
+        otherParam: 'anything you want here',
+      })}>
+        details
+
+
+
+      </Button>
+    </View>
+  );
+}
+function Details2({ route }) {
+
+  const navigation = useNavigation();
+  const { itemId, otherParam } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen Details</Text>
+      <Text>{itemId}</Text>
+      <Text>{otherParam}</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+// Tab Navigator
+const Tab = createBottomTabNavigator();
+
+// function RootStack() {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName="Home"
+//       screenOptions={{
+//         headerStyle: { backgroundColor: 'tomato' },
+//       }}
+
+//     >
+//       <Stack.Screen name="Home" component={HomeScreen}
+//         options={{ title: 'Home Overview' }}
+//       />
+//       <Stack.Screen name="Details" component={Details} />
+//       <Stack.Screen name="Details2" component={Details2}
+
+//         initialParams={{ itemId: 42 }}
+//       />
+//     </Stack.Navigator>
+//   );
+// }
+
+
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <RootStack />
+//     </NavigationContainer>
+//   );
+// }
+
+
+// Example screens for demonstration
+function HomeTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Feed" component={Details} />
+      <Tab.Screen name="Messages" component={Details2} />
+    </Tab.Navigator>
+  );
+}
+
+function RootStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeTabs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Profile" component={HomeScreen} />
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}
