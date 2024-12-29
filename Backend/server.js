@@ -6,8 +6,9 @@ import {v2 as cloudinary} from 'cloudinary'
 //export the routers from our routes
 import userRoutes from './routes/userRoutes.js'
 import postRoutes from './routes/postRoutes.js'
-// import app and server from socket
-import {app,server} from './socket/socket.js'
+
+
+const app = express();
 //env 
 import dotenv from 'dotenv';
 //mongodb connection
@@ -61,9 +62,8 @@ app.use('/api/posts' , postRoutes );
 
 
 
-//connection to server
-//using server isntead of app , we can now use both http and socket server functionalities 
 
-server.listen(PORT, () => {
+
+app.listen(PORT, () => {
     console.log(`Example app listening on port http://localhost:${PORT}`)
   })

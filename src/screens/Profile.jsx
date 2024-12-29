@@ -72,7 +72,7 @@ const Profile = ({ route }) => {
           </View>
         </View>
         <View style={styles.bottomRow}>
-          {currentUser._id === userData?._id ? (
+          {currentUser?._id === userData?._id ? (
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Update Profile</Text>
             </TouchableOpacity>
