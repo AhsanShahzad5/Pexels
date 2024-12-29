@@ -24,6 +24,7 @@ const useLogout = () => {
 			}
 			
 			AsyncStorage.removeItem("user-data");
+			AsyncStorage.removeItem("jwtToken");
 			setUser(null);
 		} catch (error) {
 			//showToast("Error", error, "error");

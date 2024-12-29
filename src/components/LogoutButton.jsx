@@ -11,7 +11,10 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     console.log("logout");
     await logout();
-    navigation.navigate("Login");
+    navigation.reset({
+      index: 0, 
+      routes: [{ name: 'Login' }], 
+    });
   };
 
   return (

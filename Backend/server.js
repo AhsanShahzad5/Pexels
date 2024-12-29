@@ -6,7 +6,6 @@ import {v2 as cloudinary} from 'cloudinary'
 //export the routers from our routes
 import userRoutes from './routes/userRoutes.js'
 import postRoutes from './routes/postRoutes.js'
-import messageRoutes from './routes/messageRoutes.js'
 // import app and server from socket
 import {app,server} from './socket/socket.js'
 //env 
@@ -56,8 +55,6 @@ app.get('/', (req, res) => {
 })
 app.use('/api/users' , userRoutes);
 app.use('/api/posts' , postRoutes );
-app.use('/api/messages' , messageRoutes );
-
 //8000 -> backend
 //3000->frontend
 // but we need both frontend and backend on 8000
